@@ -1,0 +1,33 @@
+# Local environment / secrets
+.env
+.env.*
+credentials.json
+*credentials*.json
+service-account*.json
+*.pem
+*.key
+
+# Runtime data
+records.db
+*.db
+recorded.wav
+*.wav
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Logs
+*.log
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
