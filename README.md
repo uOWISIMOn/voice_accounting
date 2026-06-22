@@ -39,21 +39,32 @@ source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.
 ---
 
 ### 2. API キーの取得と設定
+
+認証情報はコード内に直接書かず、環境変数で設定してください。
+
 #### a. Google Cloud のサービスアカウントキーの取得
 1. [Google Cloud Console](https://console.cloud.google.com/iam-admin/serviceaccounts?inv=1&invt=AbmbTQ&project=valued-decker-446713-v9) に移動。
 2. **[IAM と管理]** - **[サービスアカウント]** セクションでアカウントを作成。
 3. JSON 形式でサービスアカウントキーをダウンロード。
-4. スクリプト内で以下を追加し、ダウンロードしたキーの絶対パスを設定：
-   ```python
-   os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/path/to/credentials.json"
+4. ダウンロードした JSON ファイルはリポジトリにコミットせず、ローカルに保存する。
+5. 環境変数に絶対パスを設定する：
+   ```bash
+   export GOOGLE_APPLICATION_CREDENTIALS="/path/to/credentials.json"
    ```
 
 #### b. OpenAI API キーの取得
 1. [OpenAI 個人ページ - API Keys](https://platform.openai.com/settings/organization/api-keys) に移動。
 2. API キーを生成。
-3. スクリプト内に以下を追加し、取得した API キーを設定：
+3. 環境変数に設定する：
+   ```bash
+   export OPENAI_API_KEY="your_api_key_here"
+   ```
+4. Python 側では以下のように読み込む：
    ```python
-   openai.api_key = "sk-......"
+   import os
+   import openai
+
+   openai.api_key = os.environ.get("OPENAI_API_KEY")
    ```
 
 ---
